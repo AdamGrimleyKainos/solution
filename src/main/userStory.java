@@ -1,7 +1,6 @@
-package Main;
+package main;
 import java.sql.SQLException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class userStory {
 
