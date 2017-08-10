@@ -31,14 +31,14 @@ public class umenu {
         System.out.println("#########################################################");
         System.out.println("             MAIN MENU");
         System.out.println("\n"
-                + "1. Add Employee 1"
-                + "\n2. Show List of employees 2"
-                + "\n3. Add Sales Employees3"
-                + "\n4. Show gross pay 4"
-                + "\n5. Highest sales 5"
-                + "\n6. Add Project 6"
-                + "\n7. Assign Project 6"
-                + "\n8. View all employees working on a project 6"
+                + "1. Add Employee"
+                + "\n2. Show List of employees"
+                + "\n3. Add Sales Employees"
+                + "\n4. Show gross pay"
+                + "\n5. Highest sales"
+                + "\n6. Add Project"
+                + "\n7. Assign Project"
+                + "\n8. View all employees working on a project"
                 + "\n0. Exit");
         System.out.println("#########################################################");
 
