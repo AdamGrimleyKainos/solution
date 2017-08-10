@@ -95,8 +95,14 @@ public class umenu {
                           rs.getString(1), rs.getString(2));
               }
           } else if (answer.equals("6")){
+                userStory us = new userStory();
+                us.addProject();
+            } else if (answer.equals("7")){
+              userStory us = new userStory();
+              us.assignProject();
+              } else if (answer.equals("8")){
 
-          } else if (answer.equals("0")){
+            } else if (answer.equals("0")){
             running = false;
           } else {
             System.out.println("Error: Invalid Input - Please enter a number between 1 and 9.");

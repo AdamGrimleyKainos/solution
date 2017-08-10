@@ -1,4 +1,4 @@
-package Main;
+package main;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -141,6 +141,42 @@ public class userStory {
     }
   }
 
+
+  public void addProject(){
+
+    String projectName;
+    projectName = sc.nextLine();
+
+    int manager_no;
+    manager_no = sc.nextInt();
+
+    try {//jjj
+      DBConnect.InsertQuery("insert into project (name,emp_no) VALUES ("+projectName+","+manager_no+");", umenu.userName, umenu.pass);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void assignProject(){
+
+    String projectName;
+    projectName = sc.nextLine();
+
+    int manager_no;
+    manager_no = sc.nextInt();
+
+    try {//jjj
+      DBConnect.InsertQuery("insert into project (name,emp_no) VALUES ("+projectName+","+manager_no+");", umenu.userName, umenu.pass);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
 
 
 }
