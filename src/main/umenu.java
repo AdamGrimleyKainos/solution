@@ -44,7 +44,7 @@ public class umenu {
 
         do {
 
-
+          sc.reset();
           answer = sc.nextLine();
           valid = true;
           if(answer.equals("1")){
