@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class umenu {
   public static String userName;
   public static String pass;
-  public static void main(String[] args){
+  public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
 
     Scanner sc = new Scanner(System.in);
@@ -38,11 +38,13 @@ public class umenu {
         System.out.println("\n"
                 + "1. Add Employee 1"
                 + "\n2. Show List of employees 2"
-                + "\n3. User Story 3"
-                + "\n4. User Story 4"
-                + "\n5. User Story 5"
-                + "\n6. User Story 6"
-                + "\n7. Exit");
+                + "\n3. Add Sales Employees3"
+                + "\n4. Show gross pay 4"
+                + "\n5. Highest sales 5"
+                + "\n6. Add Project 6"
+                + "\n7. Assign Project 6"
+                + "\n8. View all employees working on a project 6"
+                + "\n0. Exit");
         System.out.println("#########################################################");
 
         do {
@@ -86,10 +88,15 @@ public class umenu {
                   e.printStackTrace();
               }
           } else if (answer.equals("5")){
-
+              ResultSet rs = DBConnect.ExecuteQuery(
+                      "SELECT  concat(first_name, ' ', last_name) AS 'Highest Sales',MAX(salesTotal) AS 'Earnings' FROM salesEmployee LEFT JOIN employees ON salesEmployee.emp_id = employees.emp_no group by first_name, last_name;", userName, pass);
+              while(rs.next()){
+                  System.out.printf("Name: %s | TotalSales: %s \n",
+                          rs.getString(1), rs.getString(2));
+              }
           } else if (answer.equals("6")){
 
-          } else if (answer.equals("7")){
+          } else if (answer.equals("0")){
             running = false;
           } else {
             System.out.println("Error: Invalid Input - Please enter a number between 1 and 9.");
