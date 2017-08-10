@@ -1,4 +1,4 @@
-package main;
+package Main;
 
 
 import java.sql.ResultSet;
@@ -9,6 +9,7 @@ public class umenu {
   public static String userName;
   public static String pass;
   public static void main(String[] args){
+    userStory u = new userStory();
 
 
     Scanner sc = new Scanner(System.in);
@@ -37,8 +38,8 @@ public class umenu {
         System.out.println("             MAIN MENU");
         System.out.println("\n"
                 + "1. Add Employee 1"
-                + "\n2. Show List of employees 2"
-                + "\n3. User Story 3"
+                + "\n2. Show List of employees US2"
+                + "\n3. Add sales employee US3"
                 + "\n4. User Story 4"
                 + "\n5. User Story 5"
                 + "\n6. User Story 6"
@@ -51,7 +52,7 @@ public class umenu {
           answer = sc.nextLine();
           valid = true;
           if(answer.equals("1")){
-            userStory u = new userStory();
+
             u.addPerson();
           } else if(answer.equals("2")) {
             try {
@@ -68,7 +69,7 @@ public class umenu {
               e.printStackTrace();
             }
           } else if(answer.equals("3")){
-            //    departmentReport
+              u.addSalesEmp();
           } else if (answer.equals("4")){//kk
               try {
                   ResultSet rs = DBConnect.ExecuteQuery("\n" +

@@ -1,4 +1,4 @@
-package main;
+package Main;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -128,11 +128,11 @@ public class userStory {
                       "VALUES ("+employeeNumber+",NOW(),'"+forename+"', '"+surname+"', '"+"F', '"+NIN+"', '"+houseNumber+"', '"+streetName+"','"+postCode+"',"+"NOW());"
               ,umenu.userName, umenu.pass);
 
-      DBConnect.InsertQuery("insert into dept_emp (emp_no, dept_no, from_date, to_date) VALUES ("+employeeNumber+",'d010',NOW(),NOW()+10);", umenu.userName, umenu.pass);
+      DBConnect.InsertQuery("insert into dept_emp (emp_no, dept_no, from_date, to_date) VALUES ("+employeeNumber+",'d010',NOW(),NOW());", umenu.userName, umenu.pass);
 
-      DBConnect.InsertQuery("insert into salaries (emp_no, salary, bank, AccountNumber, from_date, to_date) VALUES ("+employeeNumber+","+startingSalary+",'"+bankName+"','"+bankNum+"',NOW(),NOW()+10);", umenu.userName, umenu.pass);
+      DBConnect.InsertQuery("insert into salaries (emp_no, salary, bank, AccountNumber, from_date, to_date) VALUES ("+employeeNumber+","+startingSalary+",'"+bankName+"','"+bankNum+"',NOW(),NOW());", umenu.userName, umenu.pass);
 
-      DBConnect.InsertQuery("insert into salesEmployee (emp_id, commission, salesTotal) VALUES ("+employeeNumber+","+commission+","+sales+");", umenu.userName, umenu.pass);
+      DBConnect.InsertQuery("insert into salesEmployee (emp_id, commissionRate, salesTotal) VALUES ("+employeeNumber+","+commission+","+sales+");", umenu.userName, umenu.pass);
 
     } catch (SQLException e) {
       e.printStackTrace();
