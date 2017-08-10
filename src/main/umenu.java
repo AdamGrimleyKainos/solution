@@ -39,6 +39,7 @@ public class umenu {
                 + "\n6. Add Project"
                 + "\n7. Assign Project"
                 + "\n8. View all employees working on a project"
+                + "\n9. project employee counts"
                 + "\n0. Exit");
         System.out.println("#########################################################");
 
@@ -176,7 +177,45 @@ public class umenu {
               }
             } else if (answer.equals("0")){
             running = false;
-          } else {
+          }
+          else if (answer.equals("9")){
+            System.out.println("********************************************************");
+            System.out.println("--------------------Login--------------------");
+            System.out.print("Username: ");
+            userName = sc.next();
+
+            if (userName != null)
+              System.out.print("Password: ");
+            pass = sc.next();
+
+            userStory us = new userStory();
+            us.assignProject();
+          } else if (answer.equals("8")) {
+            System.out.println("********************************************************");
+            System.out.println("--------------------Login--------------------");
+            System.out.print("Username: ");
+            userName = sc.next();
+
+            if (userName != null)
+              System.out.print("Password: ");
+            pass = sc.next();
+
+            ResultSet rs1 = DBConnect.ExecuteQuery(
+                    "SELECT name FROM project GROUP BY name HAVING COUNT(emp_no) = 0;", userName, pass);
+            System.out.printf("projects with no employees:\n");
+            while (rs1.next()) {
+
+                      System.out.println(rs1.getString(1));
+            }
+            ResultSet rs2 = DBConnect.ExecuteQuery(
+                    "SELECT name, COUNT(emp_no) FROM project GROUP BY name;", userName, pass);
+            System.out.printf("Project employee counts:  \n");
+            while (rs2.next()) {
+
+              System.out.println(rs1.getString(1));
+            }
+          }
+          else {
             System.out.println("Error: Invalid Input - Please enter a number between 1 and 9.");
             valid = false;
           }
