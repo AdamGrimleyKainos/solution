@@ -44,7 +44,7 @@ public class umenu {
 
         do {
 
-          sc.reset();
+
           answer = sc.nextLine();
           valid = true;
           if(answer.equals("1")){
@@ -169,7 +169,7 @@ public class umenu {
               pass = sc.next();
 
               ResultSet rs = DBConnect.ExecuteQuery(
-                      "select concat(employees.first_name, ' ', employees.last_name), project.name, emp_projects. from emp_projects inner join employees on employees.emp_no = emp_projects.emp_no", userName, pass);
+                      "select concat(employees.first_name, ' ', employees.last_name), project.name, emp_projects.date_added from emp_projects inner join employees on employees.emp_no = emp_projects.emp_no inner join project on project.id = emp_projects.proj_id", userName, pass);
               while(rs.next()){
                   System.out.printf("Name: %s | Project Name: %s | Date Added To Project: %s\n",
                           rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
