@@ -69,12 +69,14 @@ public class umenu {
             //    departmentReport
           } else if (answer.equals("4")){
               try {
-                  ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", username, password);
+                  ResultSet rs = DBConnect.ExecuteQuery("\n" +
+                          "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (salaries.salary * 0.75/100) as 'gross pay' from employees inner join salaries on employees.emp_no = salaries.emp_no\n" +
+                          "WHERE employees.emp_no not in (select salesEmployee.emp_id from salesEmployee) and from_date > NOW() - interval 1 month\n" +
+                          "UNION\n" +
+                          "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (0.75*(salaries.salary + (salesEmployee.salesTotal * salesEmployee.commissionrate / 100))/100) as gross_pay from employees left join salesEmployee on employees.emp_no = salesEmployee.emp_id inner join salaries on salaries.emp_no = salesEmployee.emp_id WHERE from_date > NOW() - interval 1 month;", username, password);
                   while(rs.next()){
-                      System.out.printf("Employee Number: %s | Name: %s | Address: %s | NIN: %s | Bank: %s | Account Number: %s | Salary: %s | Department: %s\n",
-                              rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                              rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
-                              rs.getString(9));
+                      System.out.printf("Employee Number: %s | Name: %s | Gross Pays: %s\n",
+                              rs.getString(1), rs.getString(2), rs.getString(3));
                   }
               } catch (ClassNotFoundException e) {
                   e.printStackTrace();
