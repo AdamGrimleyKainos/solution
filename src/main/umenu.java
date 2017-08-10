@@ -26,15 +26,6 @@ public class umenu {
 
 
       while (running) {
-          System.out.println("********************************************************");
-          System.out.println("--------------------Login--------------------");
-          System.out.print("Username: ");
-          userName = sc.next();
-
-          if (userName != null)
-              System.out.print("Password: ");
-          pass = sc.next();
-
           System.out.println("\n");
 
         System.out.println("#########################################################");
@@ -57,10 +48,28 @@ public class umenu {
           answer = sc.nextLine();
           valid = true;
           if(answer.equals("1")){
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
 
-            u.addPerson();
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
+
+              u.addPerson();
           } else if(answer.equals("2")) {
-            try {
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
+              try {
               ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", userName, pass);
               while(rs.next()){
                 System.out.printf("Employee Number: %s | Name: %s | Address: %s | NIN: %s | Bank: %s | Account Number: %s | Salary: %s | Department: %s\n",
@@ -74,8 +83,26 @@ public class umenu {
               e.printStackTrace();
             }
           } else if(answer.equals("3")){
-            u.addSalesEmp();
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
+              u.addSalesEmp();
           } else if (answer.equals("4")){//kk
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
               try {
                   ResultSet rs = DBConnect.ExecuteQuery("\n" +
                           "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (salaries.salary * 0.75/100) as 'gross pay' from employees inner join salaries on employees.emp_no = salaries.emp_no\n" +
@@ -92,6 +119,15 @@ public class umenu {
                   e.printStackTrace();
               }
           } else if (answer.equals("5")){
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
               ResultSet rs = DBConnect.ExecuteQuery(
                       "SELECT  concat(first_name, ' ', last_name) AS 'Highest Sales',MAX(salesTotal) AS 'Earnings' FROM salesEmployee LEFT JOIN employees ON salesEmployee.emp_id = employees.emp_no group by first_name, last_name;", userName, pass);
               while(rs.next()){
@@ -99,8 +135,46 @@ public class umenu {
                           rs.getString(1), rs.getString(2));
               }
           } else if (answer.equals("6")){
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
 
-          } else if (answer.equals("0")){
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
+              userStory us = new userStory();
+                us.addProject();
+            } else if (answer.equals("7")){
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
+              userStory us = new userStory();
+              us.assignProject();
+              } else if (answer.equals("8")){
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
+              ResultSet rs = DBConnect.ExecuteQuery(
+                      "SELECT  concat(first_name, ' ', last_name) AS 'Highest Sales',MAX(salesTotal) AS 'Earnings' FROM salesEmployee LEFT JOIN employees ON salesEmployee.emp_id = employees.emp_no group by first_name, last_name;", userName, pass);
+              while(rs.next()){
+                  System.out.printf("Name: %s | TotalSales: %s \n",
+                          rs.getString(1), rs.getString(2));
+              }
+            } else if (answer.equals("0")){
             running = false;
           } else {
             System.out.println("Error: Invalid Input - Please enter a number between 1 and 9.");

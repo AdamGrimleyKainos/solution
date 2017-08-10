@@ -142,5 +142,45 @@ public class userStory {
   }
 
 
+  public void addProject(){
+
+    System.out.println("Project Name: ");
+    String projectName;
+    projectName = sc.nextLine();
+
+    System.out.println("Manager ID: ");
+    int manager_no;
+    manager_no = sc.nextInt();
+
+    try {//jjj
+      DBConnect.InsertQuery("insert into project (name,emp_no) VALUES ('"+projectName+"',"+manager_no+");", umenu.userName, umenu.pass);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void assignProject(){
+
+    System.out.println("Employee ID: ");
+    int projectName;
+    projectName = sc.nextInt();
+
+    System.out.println("Project ID: ");
+    int manager_no;
+    manager_no = sc.nextInt();
+
+    try {//jjj
+      DBConnect.InsertQuery("insert into project (emp_no, proj_id) VALUES ("+projectName+","+manager_no+");", umenu.userName, umenu.pass);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+
 
 }
