@@ -1,7 +1,6 @@
 package Main;
 import java.sql.SQLException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class userStory {
 
@@ -132,6 +131,8 @@ public class userStory {
       DBConnect.InsertQuery("insert into dept_emp (emp_no, dept_no, from_date, to_date) VALUES ("+employeeNumber+",'d010',NOW(),NOW()+10);", "hr", "thursday");
 
       DBConnect.InsertQuery("insert into salaries (emp_no, salary, bank, AccountNumber, from_date, to_date) VALUES ("+employeeNumber+","+startingSalary+",'"+bankName+"','"+bankNum+"',NOW(),NOW()+10);", "hr", "thursday");
+
+      DBConnect.InsertQuery("insert into salesEmployee (emp_id, commission, salesTotal) VALUES ("+employeeNumber+","+commission+","+sales+");", "hr", "thursday");
 
     } catch (SQLException e) {
       e.printStackTrace();
