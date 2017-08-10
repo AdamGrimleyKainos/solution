@@ -7,12 +7,14 @@ import java.util.Scanner;
 
 public class umenu {
   public static String userName;
-  public static String pass;
+    public static String pass;
+
+    public static String host;
 
 
 
 
-  public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
 
     Scanner sc = new Scanner(System.in);
@@ -24,6 +26,8 @@ public class umenu {
     String answer = null;
     {
 
+        System.out.print("Host: ");
+        host = sc.next();
 
       while (running) {
           System.out.println("\n");
@@ -41,7 +45,7 @@ public class umenu {
                 + "\n8. View all employees working on a project 6"
                 + "\n9. View all projects without assigned employees 7"
                 + "\n10. View all employees without assigned project 7"
-                + "\n11. View all employees working on a project 6"
+                + "\n11. View count of employees working on a project 7"
                 + "\n0. Exit");
         System.out.println("#########################################################");
 
