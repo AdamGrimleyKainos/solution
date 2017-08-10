@@ -123,7 +123,7 @@ public class userStory {
     System.out.println("Employee Number: ");
     employeeNumber = sc.nextInt();
 
-    try {
+    try {//jjj
       DBConnect.InsertQuery("insert into employees (emp_no, birth_date, first_name, last_name, gender, NIN, house_number, street_name, postcode, hire_date) " +
                       "VALUES ("+employeeNumber+",NOW(),'"+forename+"', '"+surname+"', '"+"F', '"+NIN+"', '"+houseNumber+"', '"+streetName+"','"+postCode+"',"+"NOW());"
               ,umenu.userName, umenu.pass);
