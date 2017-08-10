@@ -34,18 +34,21 @@ public class umenu {
                 + "1. Add Employee 1"
                 + "\n2. Show List of employees 2"
                 + "\n3. Add Sales Employees3"
-                + "\n4. Show gross pay 4"
+                + "\n4. Show net pay 4"
                 + "\n5. Highest sales 5"
                 + "\n6. Add Project 6"
                 + "\n7. Assign Project 6"
                 + "\n8. View all employees working on a project 6"
+                + "\n9. View all projects without assigned employees 7"
+                + "\n10. View all employees without assigned project 7"
+                + "\n11. View all employees working on a project 6"
                 + "\n0. Exit");
         System.out.println("#########################################################");
 
         do {
 
 
-          answer = sc.nextLine();
+          answer = sc.next();
           valid = true;
           if(answer.equals("1")){
               System.out.println("********************************************************");
@@ -174,7 +177,59 @@ public class umenu {
                   System.out.printf("Name: %s | Project Name: %s | Date Added To Project: %s\n",
                           rs.getString(1), rs.getString(2), rs.getString(3));
               }
-            } else if (answer.equals("0")){
+            }
+          else if(answer.equals("9")){
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+              ResultSet rs = DBConnect.ExecuteQuery(
+                      "select id, name from project left join emp_projects on emp_projects.proj_id = project.id group by project.id having count(emp_projects.emp_no) = 0;",userName, pass);
+              while(rs.next()){
+                  System.out.printf("Project ID: %s | Project Name: %s\n",
+                          rs.getString(1), rs.getString(2));
+              }
+          }
+          else if(answer.equals("10")){
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+              ResultSet rs = DBConnect.ExecuteQuery(
+                      "SELECT emp_no, CONCAT(first_name,' ', last_name) FROM employees WHERE emp_no NOT IN (select emp_no FROM emp_projects) limit 50;",userName, pass);
+              while(rs.next()){
+                  System.out.printf("Employee ID: %s | Name: %s\n",
+                          rs.getString(1), rs.getString(2));
+              }
+          }
+          else if(answer.equals("11")){
+              System.out.println("********************************************************");
+              System.out.println("--------------------Login--------------------");
+              System.out.print("Username: ");
+              userName = sc.next();
+              if (userName != null)
+                  System.out.print("Password: ");
+              pass = sc.next();
+
+
+              System.out.print("Project ID: ");
+              int projid = sc.nextInt();
+
+              ResultSet rs = DBConnect.ExecuteQuery(
+                      "select id, name, count(emp_projects.emp_no) from project left join emp_projects on emp_projects.proj_id = project.id where project.id = "+projid+" group by project.id;",userName, pass);
+
+              while(rs.next()){
+                  System.out.printf("Project ID: %s | Name: %s | Employee Count: %s\n",
+                          rs.getString(1), rs.getString(2), rs.getString(3));
+              }
+          }
+            else if (answer.equals("0")){
             running = false;
           } else {
             System.out.println("Error: Invalid Input - Please enter a number between 1 and 9.");

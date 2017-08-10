@@ -37,28 +37,28 @@ public class userStory {
 
   public void addPerson() {
     System.out.println("Forename: ");
-    forename = sc.nextLine();
+    forename = sc.next();
 
     System.out.println("Surname: ");
-    surname = sc.nextLine();
+    surname = sc.next();
 
     System.out.println("Street Name: ");
-    streetName = sc.nextLine();
+    streetName = sc.next();
 
     System.out.println("House Number: ");
-    houseNumber = sc.nextLine();
+    houseNumber = sc.next();
 
     System.out.println("Post Code: ");
-    postCode = sc.nextLine();
+    postCode = sc.next();
 
     System.out.println("NIN: ");
-    NIN = sc.nextLine();
+    NIN = sc.next();
 
     System.out.println("Bank Number: ");
-    bankNum = sc.nextLine();
+    bankNum = sc.next();
 
     System.out.println("Bank Name: ");
-    bankName = sc.nextLine();
+    bankName = sc.next();
 
     System.out.println("Starting Salary (Do not include decimal point but include the values after the decimal point: ");
     startingSalary = sc.nextInt();
@@ -88,28 +88,28 @@ public class userStory {
     int commission;
     int sales;
     System.out.println("Forename: ");
-    forename = sc.nextLine();
+    forename = sc.next();
 
     System.out.println("Surname: ");
-    surname = sc.nextLine();
+    surname = sc.next();
 
     System.out.println("Street Name: ");
-    streetName = sc.nextLine();
+    streetName = sc.next();
 
     System.out.println("House Number: ");
-    houseNumber = sc.nextLine();
+    houseNumber = sc.next();
 
     System.out.println("Post Code: ");
-    postCode = sc.nextLine();
+    postCode = sc.next();
 
     System.out.println("NIN: ");
-    NIN = sc.nextLine();
+    NIN = sc.next();
 
     System.out.println("Bank Number: ");
-    bankNum = sc.nextLine();
+    bankNum = sc.next();
 
     System.out.println("Bank Name: ");
-    bankName = sc.nextLine();
+    bankName = sc.next();
 
     System.out.println("Starting Salary (Do not include decimal point but include the values after the decimal point: ");
     startingSalary = sc.nextInt();
@@ -146,7 +146,7 @@ public class userStory {
 
     System.out.println("Project Name: ");
     String projectName;
-    projectName = sc.nextLine();
+    projectName = sc.next();
 
     System.out.println("Manager ID: ");
     int manager_no;

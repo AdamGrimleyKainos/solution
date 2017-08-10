@@ -7,7 +7,7 @@ class DBConnect {
     public static ResultSet ExecuteQuery(String query, String user, String password) throws ClassNotFoundException, SQLException {
         Class driver = Class.forName("com.mysql.jdbc.Driver");
         Connection c = null;
-        c = DriverManager.getConnection("jdbc:mysql://192.168.1.104/employees",
+        c = DriverManager.getConnection("jdbc:mysql://192.168.1.184/employees",
                 user, password);
 
         Statement st = c.createStatement();
@@ -22,7 +22,7 @@ class DBConnect {
     public static void InsertQuery(String query, String user, String password) throws SQLException, ClassNotFoundException {
         Class driver = Class.forName("com.mysql.jdbc.Driver");
         Connection c = null;
-        c = DriverManager.getConnection("jdbc:mysql://192.168.1.104/employees",
+        c = DriverManager.getConnection("jdbc:mysql://192.168.1.184/employees",
                 user, password);
 
         Statement st = c.createStatement();
