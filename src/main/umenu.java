@@ -31,14 +31,14 @@ public class umenu {
         System.out.println("#########################################################");
         System.out.println("             MAIN MENU");
         System.out.println("\n"
-                + "1. Add Employee"
-                + "\n2. Show List of employees"
-                + "\n3. Add Sales Employees"
-                + "\n4. Show gross pay"
-                + "\n5. Highest sales"
-                + "\n6. Add Project"
-                + "\n7. Assign Project"
-                + "\n8. View all employees working on a project"
+                + "1. Add Employee 1"
+                + "\n2. Show List of employees 2"
+                + "\n3. Add Sales Employees3"
+                + "\n4. Show gross pay 4"
+                + "\n5. Highest sales 5"
+                + "\n6. Add Project 6"
+                + "\n7. Assign Project 6"
+                + "\n8. View all employees working on a project 6"
                 + "\n0. Exit");
         System.out.println("#########################################################");
 
@@ -72,9 +72,9 @@ public class umenu {
               try {
               ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", userName, pass);
               while(rs.next()){
-                System.out.printf("Employee Number: %s | Name: %s | Address: %s | NIN: %s | Bank: %s | Account Number: %s | Salary: %s | Department: %s\n",
+                System.out.printf("Employee Number: %s | Name: %s | Address: %s | NIN: %s | Bank: %s | Account Number: %s | Salary: £%.2f | Department: %s\n",
                         rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                        rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getString(8),
                         rs.getString(9));
               }
             } catch (ClassNotFoundException e) {
@@ -105,13 +105,13 @@ public class umenu {
 
               try {
                   ResultSet rs = DBConnect.ExecuteQuery("\n" +
-                          "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (salaries.salary * 0.75/100) as 'gross pay' from employees inner join salaries on employees.emp_no = salaries.emp_no\n" +
+                          "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (salaries.salary * 0.75/100) as 'net pay' from employees inner join salaries on employees.emp_no = salaries.emp_no\n" +
                           "WHERE employees.emp_no not in (select salesEmployee.emp_id from salesEmployee) and from_date > NOW() - interval 1 month\n" +
                           "UNION\n" +
                           "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (0.75*(salaries.salary + (salesEmployee.salesTotal * salesEmployee.commissionrate / 100))/100) as gross_pay from employees left join salesEmployee on employees.emp_no = salesEmployee.emp_id inner join salaries on salaries.emp_no = salesEmployee.emp_id WHERE from_date > NOW() - interval 1 month;", userName, pass);
                   while(rs.next()){
-                      System.out.printf("Employee Number: %s | Name: %s | Gross Pays: %s\n",
-                              rs.getString(1), rs.getString(2), rs.getString(3));
+                      System.out.printf("Employee Number: %s | Name: %s | Net Pays: £%.2f\n",
+                              rs.getString(1), rs.getString(2), rs.getDouble(3));
                   }
               } catch (ClassNotFoundException e) {
                   e.printStackTrace();
@@ -131,8 +131,8 @@ public class umenu {
               ResultSet rs = DBConnect.ExecuteQuery(
                       "SELECT  concat(first_name, ' ', last_name) AS 'Highest Sales',MAX(salesTotal) AS 'Earnings' FROM salesEmployee LEFT JOIN employees ON salesEmployee.emp_id = employees.emp_no group by first_name, last_name;", userName, pass);
               while(rs.next()){
-                  System.out.printf("Name: %s | TotalSales: %s \n",
-                          rs.getString(1), rs.getString(2));
+                  System.out.printf("Name: %s | Total Sales: £.2f \n",
+                          rs.getString(1), rs.getDouble(2));
               }
           } else if (answer.equals("6")){
               System.out.println("********************************************************");
@@ -169,10 +169,10 @@ public class umenu {
               pass = sc.next();
 
               ResultSet rs = DBConnect.ExecuteQuery(
-                      "SELECT  concat(first_name, ' ', last_name) AS 'Highest Sales',MAX(salesTotal) AS 'Earnings' FROM salesEmployee LEFT JOIN employees ON salesEmployee.emp_id = employees.emp_no group by first_name, last_name;", userName, pass);
+                      "select concat(employees.first_name, ' ', employees.last_name), project.name, emp_projects. from emp_projects inner join employees on employees.emp_no = emp_projects.emp_no", userName, pass);
               while(rs.next()){
-                  System.out.printf("Name: %s | TotalSales: %s \n",
-                          rs.getString(1), rs.getString(2));
+                  System.out.printf("Name: %s | Project Name: %s | Date Added To Project: %s\n",
+                          rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
               }
             } else if (answer.equals("0")){
             running = false;

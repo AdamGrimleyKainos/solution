@@ -173,7 +173,7 @@ public class userStory {
     manager_no = sc.nextInt();
 
     try {//jjj
-      DBConnect.InsertQuery("insert into project (emp_no, proj_id) VALUES ("+projectName+","+manager_no+");", umenu.userName, umenu.pass);
+      DBConnect.InsertQuery("insert into emp_projects (emp_no, proj_id) VALUES ("+projectName+","+manager_no+");", umenu.userName, umenu.pass);
 
     } catch (SQLException e) {
       e.printStackTrace();
