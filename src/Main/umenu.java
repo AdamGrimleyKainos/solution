@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class umenu {
+  public static String userName;
+  public static String pass;
   public static void main(String[] args){
 
 
@@ -23,11 +25,11 @@ public class umenu {
           System.out.println("********************************************************");
           System.out.println("--------------------Login--------------------");
           System.out.print("Username: ");
-          String username = sc.next();
+          userName = sc.next();
 
-          if (username != null)
+          if (userName != null)
               System.out.print("Password: ");
-          String password = sc.next();
+          pass = sc.next();
 
           System.out.println("\n");
 
@@ -53,7 +55,7 @@ public class umenu {
             u.addPerson();
           } else if(answer.equals("2")) {
             try {
-              ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", username, password);
+              ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", userName, pass);
               while(rs.next()){
                 System.out.printf("Employee Number: %s | Name: %s | Address: %s | NIN: %s | Bank: %s | Account Number: %s | Salary: %s | Department: %s\n",
                         rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
@@ -67,13 +69,13 @@ public class umenu {
             }
           } else if(answer.equals("3")){
             //    departmentReport
-          } else if (answer.equals("4")){
+          } else if (answer.equals("4")){//kk
               try {
                   ResultSet rs = DBConnect.ExecuteQuery("\n" +
                           "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (salaries.salary * 0.75/100) as 'gross pay' from employees inner join salaries on employees.emp_no = salaries.emp_no\n" +
                           "WHERE employees.emp_no not in (select salesEmployee.emp_id from salesEmployee) and from_date > NOW() - interval 1 month\n" +
                           "UNION\n" +
-                          "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (0.75*(salaries.salary + (salesEmployee.salesTotal * salesEmployee.commissionrate / 100))/100) as gross_pay from employees left join salesEmployee on employees.emp_no = salesEmployee.emp_id inner join salaries on salaries.emp_no = salesEmployee.emp_id WHERE from_date > NOW() - interval 1 month;", username, password);
+                          "select employees.emp_no, concat(first_name, ' ', last_name) AS name, (0.75*(salaries.salary + (salesEmployee.salesTotal * salesEmployee.commissionrate / 100))/100) as gross_pay from employees left join salesEmployee on employees.emp_no = salesEmployee.emp_id inner join salaries on salaries.emp_no = salesEmployee.emp_id WHERE from_date > NOW() - interval 1 month;", userName, pass);
                   while(rs.next()){
                       System.out.printf("Employee Number: %s | Name: %s | Gross Pays: %s\n",
                               rs.getString(1), rs.getString(2), rs.getString(3));
