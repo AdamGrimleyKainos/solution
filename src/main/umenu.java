@@ -8,11 +8,15 @@ import java.util.Scanner;
 public class umenu {
   public static String userName;
   public static String pass;
+
+
+
+
   public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
 
     Scanner sc = new Scanner(System.in);
-
+    userStory u = new userStory();
     boolean running = true;
     boolean valid = true;
 
@@ -53,7 +57,7 @@ public class umenu {
           answer = sc.nextLine();
           valid = true;
           if(answer.equals("1")){
-            userStory u = new userStory();
+
             u.addPerson();
           } else if(answer.equals("2")) {
             try {
@@ -70,7 +74,7 @@ public class umenu {
               e.printStackTrace();
             }
           } else if(answer.equals("3")){
-            //    departmentReport
+            u.addSalesEmp();
           } else if (answer.equals("4")){//kk
               try {
                   ResultSet rs = DBConnect.ExecuteQuery("\n" +
