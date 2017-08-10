@@ -69,7 +69,7 @@ public class umenu {
             }
           } else if(answer.equals("3")){
             //    departmentReport
-          } else if (answer.equals("4")){
+          } else if (answer.equals("4")){//kk
               try {
                   ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", userName, pass);
                   while(rs.next()){
