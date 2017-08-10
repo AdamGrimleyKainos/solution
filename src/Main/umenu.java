@@ -1,4 +1,4 @@
-package main;
+package Main;
 
 
 import java.sql.ResultSet;
@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class umenu {
+  public static String userName;
+  public static String pass;
   public static void main(String[] args){
 
 
@@ -23,11 +25,11 @@ public class umenu {
           System.out.println("********************************************************");
           System.out.println("--------------------Login--------------------");
           System.out.print("Username: ");
-          String username = sc.next();
+          userName = sc.next();
 
-          if (username != null)
+          if (userName != null)
               System.out.print("Password: ");
-          String password = sc.next();
+          pass = sc.next();
 
           System.out.println("\n");
 
@@ -53,7 +55,7 @@ public class umenu {
             u.addPerson();
           } else if(answer.equals("2")) {
             try {
-              ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", username, password);
+              ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", userName, pass);
               while(rs.next()){
                 System.out.printf("Employee Number: %s | Name: %s | Address: %s | NIN: %s | Bank: %s | Account Number: %s | Salary: %s | Department: %s\n",
                         rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
@@ -69,7 +71,7 @@ public class umenu {
             //    departmentReport
           } else if (answer.equals("4")){
               try {
-                  ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", username, password);
+                  ResultSet rs = DBConnect.ExecuteQuery("Select * from hr_view limit 50", userName, pass);
                   while(rs.next()){
                       System.out.printf("Employee Number: %s | Name: %s | Address: %s | NIN: %s | Bank: %s | Account Number: %s | Salary: %s | Department: %s\n",
                               rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
